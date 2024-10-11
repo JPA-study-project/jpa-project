@@ -53,6 +53,7 @@ public class MenuService {
 	@Transactional
 	public void registNewMenu(MenuDTO newMenu) {
 
+		menuRepository.save(modelMapper.map(newMenu, Menu.class));
 	}
 
 	@Transactional

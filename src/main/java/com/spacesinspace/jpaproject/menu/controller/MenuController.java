@@ -91,9 +91,9 @@ public class MenuController {
 
 	@PostMapping("/regist")
 	public String registNewMenu(MenuDTO newMenu) {
-		
 
-		
+		menuService.registNewMenu(newMenu);
+
 		return "redirect:/menu/list";
 	}
 	
