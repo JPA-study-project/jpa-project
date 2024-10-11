@@ -21,6 +21,12 @@ public class CategoryService {
     }
 
     public List<CategoryDTO> findAllCategory() {
-        return null;
+        List<Category> categoryList = categoryRepository.findAllCategory();
+
+        // 람다식 사용 버전
+        return categoryList
+                .stream()
+                .map(category -> modelMapper.map(category, CategoryDTO.class))
+                .collect(Collectors.toList());
     }
 }

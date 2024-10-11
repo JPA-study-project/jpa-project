@@ -24,7 +24,6 @@ public class CateogoryController {
     @GetMapping(value="/list", produces="application/json; charset=UTF-8")
     @ResponseBody
     public List<CategoryDTO> findCategoryList() {
-
-        return null;
+        return categoryService.findAllCategory();
     }
 }
