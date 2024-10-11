@@ -33,7 +33,11 @@ public class MenuController {
 	@GetMapping("/{menuCode}")
 	public String findMenuByCode(@PathVariable int menuCode, Model model) {
 
-		return "";
+		MenuDTO menu = menuService.findMenuByCode(menuCode);
+
+		model.addAttribute("menu", menu);
+
+		return "menu/detail";
 	}
 	
 	/* 설명. JPA 페이징 처리 적용 */

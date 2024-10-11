@@ -26,8 +26,10 @@ public class MenuService {
 	}
 	
 	public MenuDTO findMenuByCode(int menuCode) {
-		
-		return null;
+
+		Menu menu = menuRepository.findById(menuCode).orElseThrow(IllegalAccessError::new);
+
+		return modelMapper.map(menu, MenuDTO.class);
 	}
 	
 	public List<MenuDTO> findMenuList() {
