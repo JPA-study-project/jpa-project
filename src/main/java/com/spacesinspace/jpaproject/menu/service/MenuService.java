@@ -47,7 +47,12 @@ public class MenuService {
 
 	public List<MenuDTO> findByMenuPrice(Integer menuPrice) {
 
-		return null;
+		List<Menu> menuList = menuRepository.findByMenuPriceGreaterThan(menuPrice);
+
+		return menuList
+				.stream()
+				.map(menu -> modelMapper.map(menu, MenuDTO.class))
+				.collect(Collectors.toList());
 	}
 
 	@Transactional

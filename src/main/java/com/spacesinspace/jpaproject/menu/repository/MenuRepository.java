@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface MenuRepository extends JpaRepository<Menu, Integer> {
 
+    List<Menu> findByMenuPriceGreaterThan(Integer menuPrice);
 }
