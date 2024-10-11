@@ -1,0 +1,28 @@
+# 1. Spring config
+spring:
+  # 1-1. db config
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/menudb
+    username: ohgiraffers
+    password: ohgiraffers
+
+  # 1-2. jpa config
+  jpa:
+    generate-ddl: false
+    #    show-sql: true
+    database: mysql
+    properties:
+      hibernate:
+        #        '[format_sql]': true
+        format_sql: true
+        #        show_sql: true
+        highlight_sql: true
+        use_sql_comments: true
+
+
+# 2. logging config
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.orm.jdbc.bind: trace
