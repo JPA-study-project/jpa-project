@@ -36,7 +36,13 @@ public class MenuService {
 	}
 
 	public Page<MenuDTO> findMenuList(Pageable pageable) {
-		return null;
+		pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1,
+				pageable.getPageSize(),
+				Sort.by("menuCode").descending());
+
+		Page<Menu> menuList = menuRepository.findAll(pageable);
+
+		return menuList.map(menu -> modelMapper.map(menu, MenuDTO.class));
 	}
 
 	public List<MenuDTO> findByMenuPrice(Integer menuPrice) {
@@ -57,6 +63,7 @@ public class MenuService {
 	/* 목차. 8. delete */
 	@Transactional
 	public void deleteMenu(Integer menuCode) {
+		menuRepository.deleteById(menuCode);
 	}
 	
 	

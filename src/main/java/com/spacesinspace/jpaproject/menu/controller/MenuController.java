@@ -52,7 +52,27 @@ public class MenuController {
 	 */
 	@GetMapping("/list")
 	public String findMenuList(@PageableDefault Pageable pageable, Model model) {
-		return "";
+		/* page -> number, size, sort 파라미터가 Pageable 객체에 담긴다. */
+		log.info("pageable : {}", pageable);
+
+		Page<MenuDTO> menuList = menuService.findMenuList(pageable);
+
+		log.info("조회한 내용 목록 : {}", menuList.getContent());
+		log.info("총 페이지 수 : {}", menuList.getTotalPages());
+		log.info("총 메뉴 수 : {}", menuList.getTotalElements());
+		log.info("해당 페이지에 표시 될 요소 수 : {}", menuList.getSize());
+		log.info("해당 페이지에 실제 요소 수 : {}", menuList.getNumberOfElements());
+		log.info("첫 페이지 여부 : {}", menuList.isFirst());
+		log.info("마지막 페이지 여부 : {}", menuList.isLast());
+		log.info("정렬 방식 : {}", menuList.getSort());
+		log.info("여러 페이지 중 현재 인덱스 : {}", menuList.getNumber());
+
+		PagingButtonInfo paging = Pagenation.getPagingButtonInfo(menuList);
+
+		model.addAttribute("paging", paging);
+		model.addAttribute("menuList", menuList);
+
+		return "menu/list";
 	}
 	
 	@GetMapping("/querymethod")
@@ -66,10 +86,6 @@ public class MenuController {
 		
 	}
 
-	/* 설명. 해당 핸들러에 의해 /menu/regist.html 뷰가 반환되고,
-	 *  이 뷰가 클라이언트 측의 브라우저에서 렌더링될 때 fetch 비동기 요청이 전송된다는 것을 잊지 말자.
-	 *  그 fetch 요청은 MenuController가 아닌 CategoryController 핸들러가 처리하도록 설계되었다.
-	 * */
 	@GetMapping("/regist")
 	public void registPage() {}
 
@@ -96,8 +112,7 @@ public class MenuController {
 	
 	@PostMapping("/delete")
 	public String deleteMenu(@RequestParam Integer menuCode) {
-
-
+		menuService.deleteMenu(menuCode);
 		return "redirect:/menu/list";
 	}
 
