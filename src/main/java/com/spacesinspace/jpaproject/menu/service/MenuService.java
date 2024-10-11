@@ -57,6 +57,7 @@ public class MenuService {
 	/* 목차. 8. delete */
 	@Transactional
 	public void deleteMenu(Integer menuCode) {
+		menuRepository.deleteById(menuCode);
 	}
 	
 	
