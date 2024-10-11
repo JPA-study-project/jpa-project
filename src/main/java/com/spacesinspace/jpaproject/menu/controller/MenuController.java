@@ -81,9 +81,12 @@ public class MenuController {
 	@GetMapping("/search")
 	public String findByMenuPrice(@RequestParam Integer menuPrice, Model model) {
 
-		
+		List<MenuDTO> menuList = menuService.findByMenuPrice(menuPrice);
+
+		model.addAttribute("menuList", menuList);
+		model.addAttribute("menuPrice", menuPrice);
+
 		return "menu/searchResult";
-		
 	}
 
 	@GetMapping("/regist")
