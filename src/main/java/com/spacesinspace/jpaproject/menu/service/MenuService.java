@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,7 +28,7 @@ public class MenuService {
 	
 	public MenuDTO findMenuByCode(int menuCode) {
 
-		Menu menu = menuRepository.findById(menuCode).orElseThrow(IllegalAccessError::new);
+		Optional<Menu> menu = menuRepository.findById(menuCode);
 
 		return modelMapper.map(menu, MenuDTO.class);
 	}
