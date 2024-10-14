@@ -4,14 +4,9 @@ import com.spacesinspace.jpaproject.menu.dto.MenuDTO;
 import com.spacesinspace.jpaproject.menu.entity.Menu;
 import com.spacesinspace.jpaproject.menu.repository.MenuRepository;
 import com.spacesinspace.jpaproject.menu.service.MenuService;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,9 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class MenuControllerTest {
-
-    @Autowired
-    private EntityManager entityManager;
 
     @Autowired
     private MenuService menuService;
